@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixijs/6.5.8/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/konva@8.3.5/konva.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            cursor: url('https://cdn-icons-png.flaticon.com/32/1828/1828884.png'), auto;
+
+        }
+        .container {
+            margin: 20px auto;
+            font-family: 'Inter', sans-serif;
+            cursor: url('https://cdn-icons-png.flaticon.com/32/1828/1828884.png'), auto;
+
+            max-width: 1000px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid black;
+            font-family: 'Inter', sans-serif;
+            cursor: url('https://cdn-icons-png.flaticon.com/32/1828/1828884.png'), auto;
+
+
+        }
+        .controles {
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+
+        }
+        .controles button {
+            background: #000000;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .controles button:hover {
+            background: #3b3b3b;
+            transition-duration: 0s;
+        }
+        .context-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid black;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 5px;
+        }
+        .context-menu ul {
+            list-style: none;
+            padding: 5px;
+            margin: 0;
+        }
+        .context-menu ul li {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .context-menu ul li:hover {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="imgs/" alt="">
+        <canvas id="canvas" width="800" height="500"></canvas>
+        <div class="controles">
+            <input type="file" id="upload" accept="image/*">
+            <button onclick="duplicateImage()">duplicar</button>
+            <button onclick="removeImage()">remover</button>
+            <button onclick="resizeImage()">aumentar</button>
+            <button onclick="applyCaricatureEffect()">tirar cor</button>
+            <button onclick="rotateImage()">rotacionar</button>
+            <button onclick="flipImage()">espelhar</button>
+            <button onclick="saveImage()">salvar</button>
+
+        </div>
+    </div>
+    
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu hidden absolute w-72 bg-white border border-gray-200 rounded-2xl shadow-2xl p-2 overflow-hidden" id="contextMenu">
+            <ul>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="duplicateImage()">
+                <i class="fas fa-clone"></i> DUPLICAR
+              </li>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="removeImage()">
+                <i class="fas fa-trash-alt"></i> REMOVER
+              </li>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="resizeImage()">
+                <i class="fas fa-expand"></i> AUMENTAR
+              </li>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="applyCaricatureEffect()">
+                <i class="fas fa-palette"></i> TIRAR COR
+              </li>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="rotateImage()">
+                <i class="fas fa-sync-alt"></i> ROTACIONAR
+              </li>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="flipImage()">
+                <i class="fas fa-arrows-alt-h"></i> ESPELHAR
+              </li>
+              <li class="text-sm p-2 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center gap-2" onclick="saveImage()">
+                <i class="fas fa-save"></i> SALVAR
+              </li>
+            </ul>
+          </div>      
+
+          <script src="js/main.js"></script>
+
+
+</body>
+</html>
